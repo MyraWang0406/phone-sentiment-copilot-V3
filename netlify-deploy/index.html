@@ -1,0 +1,1881 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <title>锦书舆情 Copilot · PhoneFeedbackIndex</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 56'><rect width='56' height='56' rx='28' fill='%232563eb'/><rect width='56' height='56' rx='28' fill='url(%23logoGlass)' opacity='0.4'/><rect x='12' y='32' width='6' height='12' rx='2' fill='white' opacity='0.9'/><rect x='22' y='24' width='6' height='20' rx='2' fill='white' opacity='0.9'/><rect x='32' y='28' width='6' height='16' rx='2' fill='white' opacity='0.9'/><rect x='42' y='20' width='6' height='24' rx='2' fill='white' opacity='0.9'/><defs><linearGradient id='logoGradient' x1='0' y1='0' x2='56' y2='56'><stop offset='0%25' stop-color='%232563eb'/><stop offset='100%25' stop-color='%2322d3ee'/></linearGradient><linearGradient id='logoGlass' x1='0' y1='0' x2='56' y2='56'><stop offset='0%25' stop-color='white' stop-opacity='0.3'/><stop offset='100%25' stop-color='white' stop-opacity='0.1'/></linearGradient></defs></svg>" />
+
+    <style>
+      :root {
+        --bg-body: #f3f6fb;
+        --bg-card: #ffffff;
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --primary-soft: #eff6ff;
+        --gray-900: #0f172a;
+        --gray-700: #334155;
+        --gray-600: #4b5563;
+        --gray-500: #64748b;
+        --gray-400: #94a3b8;
+        --gray-300: #cbd5f5;
+        --gray-200: #e5e7eb;
+        --gray-100: #f3f4f6;
+        --success: #16a34a;
+        --danger: #dc2626;
+        --radius-xl: 24px;
+        --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.08);
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateX(-50%) translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(-50%) translateY(0);
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          "PingFang SC", "Hiragino Sans GB", sans-serif;
+        background: radial-gradient(circle at 0 0, #e0f2fe, #eef2ff 40%, #f9fafb);
+        color: var(--gray-900);
+      }
+
+      .page-root {
+        max-width: 1320px;
+        margin: 0 auto;
+        padding: 32px 32px 56px;
+      }
+
+      /* header */
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 28px;
+      }
+
+      .header-left {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .logo-chart {
+        width: 56px;
+        height: 56px;
+        border-radius: 999px;
+        box-shadow: 0 12px 30px rgba(37, 99, 235, 0.35);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      
+      .logo-chart svg {
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+      }
+
+      .header-title-main {
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+
+      .header-title-main span {
+        background: linear-gradient(90deg, #0f172a, #2563eb);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .header-title-sub {
+        font-size: 13px;
+        color: var(--gray-500);
+        margin-top: 4px;
+      }
+
+      .header-title-sub2 {
+        font-size: 11px;
+        color: var(--gray-400);
+        margin-top: 2px;
+      }
+
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .status-col {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 6px;
+      }
+
+      .status-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(148, 163, 184, 0.3);
+        font-size: 12px;
+        color: var(--gray-600);
+        box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+      }
+
+      .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: #22c55e;
+        box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.35);
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      button {
+        font-family: inherit;
+      }
+
+      .btn-outline,
+      .btn-primary {
+        border-radius: 999px;
+        padding: 8px 18px;
+        font-size: 12px;
+        font-weight: 600;
+        border: 1px solid transparent;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .btn-outline {
+        background: rgba(255, 255, 255, 0.9);
+        border-color: rgba(148, 163, 184, 0.5);
+        color: var(--gray-700);
+      }
+
+      .btn-outline:hover {
+        background: #ffffff;
+        border-color: var(--primary);
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        color: #ffffff;
+        box-shadow: 0 12px 25px rgba(37, 99, 235, 0.4);
+      }
+
+      .btn-primary:hover {
+        filter: brightness(1.03);
+        transform: translateY(-1px);
+      }
+
+      /* KPI cards */
+
+      .kpi-row {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 18px;
+        margin-bottom: 28px;
+      }
+
+      .kpi-card {
+        background: rgba(255, 255, 255, 0.96);
+        border-radius: var(--radius-xl);
+        padding: 18px 18px 16px;
+        box-shadow: var(--shadow-soft);
+        border: 1px solid rgba(226, 232, 240, 0.8);
+        position: relative;
+        overflow: visible;
+      }
+
+      .kpi-label {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 13px;
+        color: var(--gray-500);
+        margin-bottom: 6px;
+      }
+
+      .kpi-help {
+        width: 18px;
+        height: 18px;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.6);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        color: var(--gray-400);
+        cursor: help;
+        position: relative;
+        transition: all 0.2s;
+      }
+      
+      .kpi-help:hover {
+        border-color: rgba(59, 130, 246, 0.8);
+        color: rgba(59, 130, 246, 1);
+        background: rgba(59, 130, 246, 0.1);
+      }
+
+      .kpi-value {
+        font-size: 30px;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        color: var(--gray-900);
+      }
+
+      .kpi-extra {
+        margin-top: 6px;
+        font-size: 11px;
+        color: var(--gray-400);
+        min-height: 14px;
+      }
+
+      .kpi-tooltip {
+        position: absolute;
+        left: 50%;
+        top: calc(100% + 8px);
+        transform: translateX(-50%);
+        width: 280px;
+        max-width: 90vw;
+        padding: 12px 14px;
+        font-size: 12px;
+        line-height: 1.5;
+        border-radius: 12px;
+        background: rgba(15, 23, 42, 0.98);
+        color: #e5e7eb;
+        box-shadow: 0 16px 40px rgba(15, 23, 42, 0.6);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+        z-index: 1000;
+        white-space: normal;
+        word-wrap: break-word;
+      }
+
+      .kpi-card:hover .kpi-tooltip,
+      .kpi-help:hover ~ .kpi-tooltip,
+      .kpi-label:hover ~ .kpi-tooltip {
+        opacity: 1 !important;
+        transform: translateX(-50%);
+        pointer-events: auto;
+        visibility: visible;
+      }
+
+      /* main layout */
+
+      .main-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 7.2fr) minmax(0, 4.8fr);
+        gap: 22px;
+      }
+
+      .card {
+        background: var(--bg-card);
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow-soft);
+        border: 1px solid rgba(226, 232, 240, 0.9);
+        padding: 20px 20px 18px;
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 14px;
+      }
+
+      .card-title {
+        font-size: 15px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .card-badge {
+        font-size: 11px;
+        padding: 2px 8px;
+        border-radius: 999px;
+        background: #e0f2fe;
+        color: var(--primary-dark);
+        font-weight: 600;
+      }
+
+      .card-subtitle {
+        font-size: 12px;
+        color: var(--gray-500);
+        margin-top: 4px;
+      }
+
+      /* tables */
+
+      .table-wrapper {
+        border-radius: 12px;
+        border: 1px solid var(--gray-200);
+        overflow-x: auto;
+        overflow-y: visible;
+        background: #ffffff;
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      .table-wrapper::-webkit-scrollbar {
+        height: 8px;
+      }
+      
+      .table-wrapper::-webkit-scrollbar-track {
+        background: #f1f5f9;
+        border-radius: 4px;
+      }
+      
+      .table-wrapper::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+      }
+      
+      .table-wrapper::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+      }
+
+      thead {
+        background: #f9fafb;
+      }
+
+      th,
+      td {
+        padding: 10px 12px;
+        text-align: left;
+        border-bottom: 1px solid #edf2f7;
+      }
+
+      thead th {
+        font-weight: 600;
+        color: var(--gray-500);
+        font-size: 12px;
+        position: relative;
+        user-select: none;
+      }
+      
+      thead th.sortable {
+        cursor: pointer;
+        padding-right: 24px;
+      }
+      
+      thead th.sortable:hover {
+        background: #f1f5f9;
+        color: var(--gray-700);
+      }
+      
+      thead th .sort-icon {
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 16px;
+        height: 16px;
+        opacity: 0.3;
+        transition: opacity 0.2s;
+      }
+      
+      thead th.sortable:hover .sort-icon {
+        opacity: 0.6;
+      }
+      
+      thead th.sort-asc .sort-icon,
+      thead th.sort-desc .sort-icon {
+        opacity: 1;
+      }
+      
+      thead th.sort-asc .sort-icon::after {
+        content: "▲";
+        color: var(--primary);
+      }
+      
+      thead th.sort-desc .sort-icon::after {
+        content: "▼";
+        color: var(--primary);
+      }
+
+      tbody tr:hover {
+        background: #f1f5f9;
+      }
+
+      tbody tr.active-row {
+        background: #eff6ff;
+      }
+
+      .td-number {
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .td-number.positive {
+        color: var(--success);
+      }
+
+      .td-number.negative {
+        color: var(--danger);
+      }
+
+      .badge-chip {
+        font-size: 11px;
+        padding: 2px 8px;
+        border-radius: 999px;
+        font-weight: 500;
+      }
+      .badge-pos {
+        background: #dcfce7;
+        color: #166534;
+      }
+      .badge-neg {
+        background: #fee2e2;
+        color: #b91c1c;
+      }
+      .badge-neu {
+        background: #e5e7eb;
+        color: #4b5563;
+      }
+
+      .detail-toolbar {
+        margin: 18px 0 10px;
+        padding: 10px 12px;
+        border-radius: 12px;
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+        font-size: 12px;
+        flex-wrap: wrap;
+      }
+      
+      .detail-toolbar-filter-group {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      
+      .detail-toolbar-help {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 18px;
+        height: 18px;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.6);
+        color: var(--gray-400);
+        font-size: 11px;
+        cursor: help;
+        margin-left: auto;
+      }
+      
+      .detail-toolbar-help-tooltip {
+        position: absolute;
+        right: 0;
+        top: 100%;
+        transform: translateY(8px);
+        width: 200px;
+        padding: 8px 10px;
+        font-size: 11px;
+        border-radius: 8px;
+        background: rgba(15, 23, 42, 0.96);
+        color: #e5e7eb;
+        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.4);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+        z-index: 30;
+        white-space: normal;
+        line-height: 1.5;
+      }
+      
+      .detail-toolbar-help:hover .detail-toolbar-help-tooltip {
+        opacity: 1;
+        transform: translateY(4px);
+      }
+
+      select {
+        min-width: 110px;
+        padding: 4px 28px 4px 8px;
+        border-radius: 999px;
+        border: 1px solid #d1d5db;
+        font-size: 12px;
+        background-color: #ffffff;
+        background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%2394a3b8' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 8px center;
+        background-size: 14px;
+        appearance: none;
+      }
+
+      select:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.3);
+      }
+
+      /* copilot */
+
+      .copilot-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        height: 100%;
+      }
+
+      .copilot-input {
+        width: 100%;
+        min-height: 120px;
+        border-radius: 16px;
+        border: 1px solid #e5e7eb;
+        padding: 12px 14px;
+        font-size: 13px;
+        resize: vertical;
+        outline: none;
+      }
+
+      .copilot-input:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16);
+      }
+
+      .copilot-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 11px;
+        color: var(--gray-400);
+      }
+
+      .btn-ask {
+        border-radius: 999px;
+        padding: 7px 16px;
+        font-size: 12px;
+        border: none;
+        cursor: pointer;
+        background: linear-gradient(135deg, #f97316, #fb923c);
+        color: #ffffff;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        box-shadow: 0 10px 22px rgba(249, 115, 22, 0.35);
+      }
+
+      .btn-ask:hover {
+        filter: brightness(1.05);
+      }
+
+      .copilot-answer {
+        flex: 1;
+        border-radius: 16px;
+        border: 1px dashed #e5e7eb;
+        background: #f9fafb;
+        padding: 14px 14px 16px;
+        font-size: 13px;
+        color: var(--gray-700);
+        overflow: auto;
+        min-height: 170px;
+      }
+
+      .copilot-answer.empty {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--gray-400);
+        font-style: italic;
+      }
+
+      .footer-note {
+        margin-top: 10px;
+        text-align: right;
+        font-size: 11px;
+        color: var(--gray-400);
+      }
+
+      /* responsive */
+
+      @media (max-width: 1100px) {
+        .page-root {
+          padding: 20px 16px 40px;
+        }
+        .kpi-row {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .main-grid {
+          grid-template-columns: minmax(0, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .page-root {
+          padding: 16px 12px 32px;
+        }
+        .header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+        .header-left {
+          width: 100%;
+        }
+        .header-right {
+          width: 100%;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+        .header-actions {
+          width: 100%;
+          flex-wrap: wrap;
+        }
+        .kpi-row {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 12px;
+        }
+        .kpi-card {
+          padding: 14px 14px 12px;
+        }
+        .kpi-value {
+          font-size: 24px;
+        }
+        .main-grid {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .card {
+          padding: 16px 16px 14px;
+        }
+        .detail-toolbar {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
+        }
+        .detail-toolbar-filter-group {
+          width: 100%;
+          flex-wrap: wrap;
+        }
+        .detail-toolbar-help {
+          margin-left: 0;
+          align-self: flex-end;
+        }
+        select {
+          min-width: 100px;
+          font-size: 11px;
+        }
+        table {
+          font-size: 12px;
+        }
+        th, td {
+          padding: 8px 10px;
+        }
+        .table-wrapper {
+          overflow-x: auto;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .header-title-main {
+          font-size: 18px;
+        }
+        .header-title-sub {
+          font-size: 12px;
+        }
+        .header-title-sub2 {
+          font-size: 10px;
+        }
+        .kpi-row {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 10px;
+        }
+        .kpi-value {
+          font-size: 28px;
+        }
+        .kpi-extra {
+          font-size: 10px;
+        }
+        .card-title {
+          font-size: 14px;
+        }
+        .card-subtitle {
+          font-size: 11px;
+        }
+        .detail-toolbar-filter-group {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        select {
+          width: 100%;
+          min-width: auto;
+        }
+        table {
+          font-size: 11px;
+        }
+        th, td {
+          padding: 6px 8px;
+        }
+        .copilot-input {
+          min-height: 100px;
+          font-size: 12px;
+        }
+        .copilot-answer {
+          min-height: 150px;
+          font-size: 12px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="page-root">
+      <header class="header">
+        <div class="header-left">
+          <div class="logo-chart">
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- 蓝底玻璃效果背景 -->
+              <rect width="56" height="56" rx="28" fill="url(#logoGradient)"/>
+              <rect width="56" height="56" rx="28" fill="url(#logoGlass)" opacity="0.4"/>
+              
+              <!-- 柱状图 -->
+              <rect x="12" y="32" width="6" height="12" rx="2" fill="white" opacity="0.9"/>
+              <rect x="22" y="24" width="6" height="20" rx="2" fill="white" opacity="0.9"/>
+              <rect x="32" y="28" width="6" height="16" rx="2" fill="white" opacity="0.9"/>
+              <rect x="42" y="20" width="6" height="24" rx="2" fill="white" opacity="0.9"/>
+              
+              <!-- 渐变定义 -->
+              <defs>
+                <linearGradient id="logoGradient" x1="0" y1="0" x2="56" y2="56">
+                  <stop offset="0%" stop-color="#2563eb"/>
+                  <stop offset="100%" stop-color="#22d3ee"/>
+                </linearGradient>
+                <linearGradient id="logoGlass" x1="0" y1="0" x2="56" y2="56">
+                  <stop offset="0%" stop-color="white" stop-opacity="0.3"/>
+                  <stop offset="100%" stop-color="white" stop-opacity="0.1"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div>
+            <div class="header-title-main">
+              <span>锦书舆情 Copilot</span>
+            </div>
+            <div class="header-title-sub">
+              品牌口碑 · 国内外舆情聚合与智能分析 - 智能手机
+            </div>
+            <div class="header-title-sub2">
+              Phone Brand Sentiment Analysis Dashboard
+            </div>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <div class="status-col">
+            <div class="status-pill">
+              <span class="status-dot"></span>
+              <span>运行中 · PhoneFeedbackIndex</span>
+            </div>
+            <div
+              id="crawl-time-label"
+              style="font-size:11px; color:var(--gray-400);"
+            >
+              数据更新时间：--
+            </div>
+          </div>
+          <div class="header-actions">
+            <input
+              id="csv-input"
+              type="file"
+              accept=".csv"
+              style="display: none"
+              multiple
+            />
+            <button class="btn-outline" id="btn-import-csv">导入 CSV</button>
+            <button class="btn-primary" id="btn-refresh-all">刷新数据</button>
+          </div>
+        </div>
+      </header>
+
+      <!-- KPI row -->
+      <section class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-label">
+            <span>舆情平台数</span>
+            <span class="kpi-help">?</span>
+          </div>
+          <div class="kpi-value" id="kpi-platforms-count">--</div>
+          <div class="kpi-extra" id="kpi-platforms-extra"></div>
+          <div class="kpi-tooltip" id="tooltip-platforms"></div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-label">
+            <span>手机品牌数</span>
+            <span class="kpi-help">?</span>
+          </div>
+          <div class="kpi-value" id="kpi-brands-count">--</div>
+          <div class="kpi-extra" id="kpi-brands-extra"></div>
+          <div class="kpi-tooltip" id="tooltip-brands"></div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-label">
+            <span>覆盖型号</span>
+            <span class="kpi-help">?</span>
+          </div>
+          <div class="kpi-value" id="kpi-models-count">--</div>
+          <div class="kpi-extra" id="kpi-models-extra"></div>
+          <div class="kpi-tooltip" id="tooltip-models"></div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-label">
+            <span>原始内容量</span>
+            <span class="kpi-help">?</span>
+          </div>
+          <div class="kpi-value" id="kpi-original-count">--</div>
+          <div class="kpi-extra" id="kpi-original-extra"></div>
+          <div class="kpi-tooltip" id="tooltip-original"></div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-label">
+            <span>用户评论数</span>
+            <span class="kpi-help">?</span>
+          </div>
+          <div class="kpi-value" id="kpi-comments-count">--</div>
+          <div class="kpi-extra" id="kpi-comments-extra"></div>
+          <div class="kpi-tooltip" id="tooltip-comments"></div>
+        </div>
+      </section>
+
+      <section class="main-grid">
+        <!-- left -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">
+                品牌舆情概览
+                <span class="card-badge" id="brand-total-badge"
+                  >点击查看评论</span
+                >
+              </div>
+              <div class="card-subtitle">
+                品牌、代表机型、覆盖平台及情感倾向的汇总视图。
+              </div>
+            </div>
+          </div>
+
+          <div class="table-wrapper" style="margin-bottom: 18px;">
+            <table>
+              <thead id="brand-table-header">
+                <tr>
+                  <th class="sortable" data-sort="brand" style="min-width: 80px;">
+                    品牌
+                    <span class="sort-icon"></span>
+                  </th>
+                  <th style="min-width: 150px;">热议机型</th>
+                  <th style="min-width: 130px;">来源</th>
+                  <th class="td-number sortable" data-sort="total">
+                    评论数
+                    <span class="sort-icon"></span>
+                  </th>
+                  <th class="td-number sortable" data-sort="pos">
+                    正向
+                    <span class="sort-icon"></span>
+                  </th>
+                  <th class="td-number sortable" data-sort="neg">
+                    负向
+                    <span class="sort-icon"></span>
+                  </th>
+                  <th class="td-number sortable" data-sort="neu">
+                    中性
+                    <span class="sort-icon"></span>
+                  </th>
+                  <th class="td-number sortable" data-sort="rate">
+                    好评率
+                    <span class="sort-icon"></span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="brand-table-body">
+                <tr>
+                  <td colspan="8" style="text-align:center; padding: 20px 4px; color: #9ca3af;">
+                    正在加载数据...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card-header" style="margin-top: 6px;">
+            <div>
+              <div class="card-title">
+                评论透视
+                <span
+                  class="card-badge"
+                  id="detail-brand-label"
+                  style="background:#e5e7eb; color:#4b5563;"
+                  >请选择品牌</span
+                >
+              </div>
+              <div class="card-subtitle">
+                点击上方品牌行下钻，可按品牌、型号、平台与年月筛选具体评论。
+              </div>
+            </div>
+          </div>
+
+          <div class="detail-toolbar">
+            <div class="detail-toolbar-filter-group">
+              <strong>筛选：</strong>
+              <select id="brand-select">
+                <option value="">选择品牌...</option>
+              </select>
+              <select id="model-select">
+                <option value="">所有型号</option>
+              </select>
+              <select id="platform-select">
+                <option value="">所有平台</option>
+                <option value="bilibili">Bilibili</option>
+                <option value="gsmarena">Gsmarena</option>
+                <option value="reddit">Reddit</option>
+              </select>
+              <select id="year-select">
+                <option value="">年份</option>
+              </select>
+              <select id="month-select">
+                <option value="">月份</option>
+              </select>
+            </div>
+            <div class="detail-toolbar-help">
+              ?
+              <div class="detail-toolbar-help-tooltip">
+                评论时间只展示到「天」，不展示具体时刻。
+              </div>
+            </div>
+          </div>
+
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th style="min-width: 100px;">时间</th>
+                  <th style="min-width: 70px;">平台</th>
+                  <th style="min-width: 80px;">品牌</th>
+                  <th style="min-width: 120px;">机型</th>
+                  <th style="min-width: 60px;">情感</th>
+                  <th style="min-width: 360px;">评论内容</th>
+                </tr>
+              </thead>
+              <tbody id="detail-table-body">
+                <tr>
+                  <td colspan="6" style="text-align:center; padding: 22px 4px; color:#9ca3af;">
+                    请先在上方表格中选择品牌。
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="footer-note">
+            Powered by 锦书舆情 Copilot · PhoneFeedbackIndex
+          </div>
+        </div>
+
+        <!-- right Copilot -->
+        <div class="card" style="display:flex; flex-direction:column;">
+          <div class="card-header">
+            <div>
+              <div class="card-title">
+                智能分析助手
+                <span class="card-badge">AI Insight</span>
+              </div>
+              <div class="card-subtitle">
+                基于已抓取的评论语料，一键总结品牌口碑、优缺点与竞品对比。
+              </div>
+            </div>
+          </div>
+
+          <div class="copilot-layout">
+            <textarea
+              id="copilot-question"
+              class="copilot-input"
+              placeholder="试试问我：&#10;“总结一下 iPhone 16 Pro 的发热问题？”&#10;“小米 15 和 三星 S24 谁的口碑更好？”"
+            ></textarea>
+
+            <div class="copilot-footer">
+              <span>当前为链路调试版本，暂不真实调用大模型。</span>
+              <button class="btn-ask" id="btn-ask-copilot">
+                <span>✨</span> 生成分析
+              </button>
+            </div>
+
+            <div class="copilot-answer empty" id="copilot-answer">
+              AI 的回答会显示在这里...
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      // ⚠️ 部署前必改：请将下面的地址改为你的后端 API 地址
+      // 本地调试：http://127.0.0.1:8000
+      // 线上部署：替换为 Render 后端地址，例如：https://phone-sentiment-copilot.onrender.com
+      const API_BASE = "http://127.0.0.1:8000";
+
+      let GLOBAL_STATS = null;
+      let BRAND_INSIGHTS = [];
+      let CURRENT_BRAND_ID = "";
+      let CURRENT_BRAND_NAME = "";
+      let CURRENT_ALL_ROWS = [];
+      
+      // 错误提示元素
+      let errorBanner = null;
+      
+      // 表格排序状态
+      let BRAND_TABLE_SORT = {
+        field: "total",
+        direction: "desc" // "asc" 或 "desc"
+      };
+
+      async function fetchJSON(path, options = {}) {
+        try {
+          const res = await fetch(API_BASE + path, options);
+          if (!res.ok) {
+            throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+          }
+          return await res.json();
+        } catch (err) {
+          showError(`后端接口请求失败：${err.message}。请检查后端是否启动或稍后重试。`);
+          throw err;
+        }
+      }
+      
+      // 显示错误提示
+      function showError(message) {
+        // 移除旧的错误提示
+        if (errorBanner) {
+          errorBanner.remove();
+        }
+        
+        // 创建错误提示横幅
+        errorBanner = document.createElement("div");
+        errorBanner.style.cssText = `
+          position: fixed;
+          top: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: #ef4444;
+          color: white;
+          padding: 12px 24px;
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+          z-index: 10000;
+          font-size: 14px;
+          max-width: 600px;
+          text-align: center;
+          animation: slideDown 0.3s ease-out;
+        `;
+        errorBanner.textContent = message;
+        
+        // 添加关闭按钮
+        const closeBtn = document.createElement("button");
+        closeBtn.textContent = "×";
+        closeBtn.style.cssText = `
+          position: absolute;
+          right: 8px;
+          top: 50%;
+          transform: translateY(-50%);
+          background: transparent;
+          border: none;
+          color: white;
+          font-size: 20px;
+          cursor: pointer;
+          padding: 0 8px;
+          line-height: 1;
+        `;
+        closeBtn.onclick = () => errorBanner.remove();
+        errorBanner.appendChild(closeBtn);
+        
+        document.body.appendChild(errorBanner);
+        
+        // 5秒后自动消失
+        setTimeout(() => {
+          if (errorBanner && errorBanner.parentNode) {
+            errorBanner.remove();
+          }
+        }, 5000);
+      }
+      
+      // 隐藏错误提示
+      function hideError() {
+        if (errorBanner) {
+          errorBanner.remove();
+          errorBanner = null;
+        }
+      }
+
+      function formatPercent(num) {
+        if (num === null || num === undefined) return "--";
+        return (num * 100).toFixed(1).replace(/\.0$/, "") + "%";
+      }
+
+      function escapeHTML(str) {
+        return String(str)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+      }
+
+      // ========== KPI /api/v1/metrics/overview ==========
+
+      async function loadStats() {
+        try {
+          hideError(); // 清除之前的错误提示
+          
+          const response = await fetchJSON("/api/v1/metrics/overview");
+          
+          if (!response || !response.overview) {
+            throw new Error("返回数据格式不正确");
+          }
+          
+          const data = response.overview;
+          GLOBAL_STATS = data;
+
+          // 平台数量
+          document.getElementById("kpi-platforms-count").textContent =
+            data.platform_count ?? 0;
+          
+          // 平台列表
+          const platformNames = {
+            "bilibili": "Bilibili",
+            "gsmarena": "GSMArena", 
+            "reddit": "Reddit"
+          };
+          const platformList = Object.entries(data.original_by_platform || {})
+            .map(([pid]) => platformNames[pid] || pid);
+          document.getElementById("kpi-platforms-extra").textContent =
+            platformList.join(" / ") || "尚未识别平台";
+
+          // 品牌数量
+          document.getElementById("kpi-brands-count").textContent =
+            data.brand_count ?? 0;
+          
+          // 品牌预览（从 brands 数组中获取）
+          const brandPreview = (response.brands || [])
+            .slice(0, 3)
+            .map(b => b.brand_name)
+            .join("、");
+          document.getElementById("kpi-brands-extra").textContent =
+            brandPreview || "暂无品牌数据";
+
+          // 型号数量
+          document.getElementById("kpi-models-count").textContent =
+            data.model_count ?? 0;
+          document.getElementById("kpi-models-extra").textContent = data.model_count
+            ? `共覆盖 ${data.model_count} 款手机型号`
+            : "共覆盖 0 款手机型号";
+
+          // 原始内容数
+          document.getElementById("kpi-original-count").textContent =
+            data.original_count ?? 0;
+          const originalLines = Object.entries(data.original_by_platform || {})
+            .map(([pid, n]) => `${platformNames[pid] || pid}: ${n} 条`)
+            .join("； ");
+          document.getElementById("kpi-original-extra").textContent =
+            originalLines || "按平台聚合的原文/视频数量。";
+
+          // 评论数
+          document.getElementById("kpi-comments-count").textContent =
+            data.comment_count ?? 0;
+          const commentLines = Object.entries(data.comment_by_platform || {})
+            .map(([pid, n]) => `${platformNames[pid] || pid}: ${n} 条`)
+            .join("； ");
+          document.getElementById("kpi-comments-extra").textContent =
+            commentLines || "按平台聚合的评论数量。";
+
+          // 更新时间
+          const crawlLabel = document.getElementById("crawl-time-label");
+          if (crawlLabel && data.crawl_time) {
+            crawlLabel.textContent = "数据更新时间：" + data.crawl_time;
+          }
+
+          // tooltips
+          const platformListForTooltip = Object.entries(data.original_by_platform || {})
+            .map(([pid]) => {
+              const name = platformNames[pid] || pid;
+              return "• " + escapeHTML(name);
+            })
+            .join("<br>");
+          
+          document.getElementById("tooltip-platforms").innerHTML =
+            `当前接入平台共 <b>${data.platform_count ?? 0}</b> 个：<br>` +
+            (platformListForTooltip || "暂无平台数据");
+
+          // 品牌 tooltip
+          const brandsForTooltip = (response.brands || [])
+            .map(b => b.brand_name)
+            .slice(0, 15);
+          document.getElementById("tooltip-brands").innerHTML =
+            `共识别出 <b>${data.brand_count ?? 0}</b> 个手机品牌。<br>` +
+            `<small>统计口径：从所有CSV数据中提取的唯一品牌名称</small><br><br>` +
+            (brandsForTooltip.length > 0 
+              ? escapeHTML(brandsForTooltip.join("，"))
+              : "暂无品牌数据");
+
+          document.getElementById("tooltip-models").innerHTML =
+            `共覆盖 <b>${data.model_count ?? 0}</b> 个目标手机型号。<br>` +
+            `<small>统计口径：仅统计 config.py 中定义的 TARGET_MODELS（目标抓取型号），不包括所有出现的型号</small>`;
+
+          const originalPlatformDetails = Object.entries(data.original_by_platform || {})
+            .map(([pid, n]) => {
+              const platformName = platformNames[pid] || pid;
+              return `• ${escapeHTML(platformName)}：${n} 条`;
+            })
+            .join("<br>");
+          
+          document.getElementById("tooltip-original").innerHTML =
+            `原始内容共 <b>${data.original_count ?? 0}</b> 条。<br>` +
+            `<small>统计口径：原文/视频（is_comment=0），不包括评论</small><br><br>` +
+            (originalPlatformDetails || "暂无数据");
+
+          const commentPlatformDetails = Object.entries(data.comment_by_platform || {})
+            .map(([pid, n]) => {
+              const platformName = platformNames[pid] || pid;
+              return `• ${escapeHTML(platformName)}：${n} 条`;
+            })
+            .join("<br>");
+          
+          document.getElementById("tooltip-comments").innerHTML =
+            `评论总数共 <b>${data.comment_count ?? 0}</b> 条。<br>` +
+            `<small>统计口径：用户评论（is_comment=1），不包括原文/视频</small><br><br>` +
+            (commentPlatformDetails || "暂无数据");
+        } catch (err) {
+          console.error("加载统计数据失败:", err);
+          // 错误已在 fetchJSON 中显示，这里设置默认值
+          document.getElementById("kpi-platforms-count").textContent = "0";
+          document.getElementById("kpi-brands-count").textContent = "0";
+          document.getElementById("kpi-models-count").textContent = "0";
+          document.getElementById("kpi-original-count").textContent = "0";
+          document.getElementById("kpi-comments-count").textContent = "0";
+        }
+      }
+
+      // ========== /insights 品牌表 ==========
+      
+      // 排序品牌数据
+      function sortBrandInsights() {
+        const { field, direction } = BRAND_TABLE_SORT;
+        const sorted = [...BRAND_INSIGHTS];
+        
+        sorted.sort((a, b) => {
+          let aVal, bVal;
+          
+          switch(field) {
+            case "brand":
+              aVal = (a.brand_name || a.brand_id || "").toLowerCase();
+              bVal = (b.brand_name || b.brand_id || "").toLowerCase();
+              break;
+            case "total":
+              aVal = a.total || 0;
+              bVal = b.total || 0;
+              break;
+            case "pos":
+              aVal = a.pos || 0;
+              bVal = b.pos || 0;
+              break;
+            case "neg":
+              aVal = a.neg || 0;
+              bVal = b.neg || 0;
+              break;
+            case "neu":
+              aVal = a.neu || 0;
+              bVal = b.neu || 0;
+              break;
+            case "rate":
+              aVal = a.positive_rate || 0;
+              bVal = b.positive_rate || 0;
+              break;
+            default:
+              return 0;
+          }
+          
+          if (typeof aVal === "string") {
+            return direction === "asc" 
+              ? aVal.localeCompare(bVal)
+              : bVal.localeCompare(aVal);
+          } else {
+            return direction === "asc" ? aVal - bVal : bVal - aVal;
+          }
+        });
+        
+        return sorted;
+      }
+      
+      // 渲染品牌表格
+      function renderBrandTable() {
+        const sorted = sortBrandInsights();
+        const tbody = document.getElementById("brand-table-body");
+        tbody.innerHTML = "";
+
+        const brandSelect = document.getElementById("brand-select");
+        brandSelect.innerHTML = '<option value="">选择品牌...</option>';
+
+        sorted.forEach((item) => {
+            const tr = document.createElement("tr");
+            tr.dataset.brandId = item.brand_id;
+
+            const tdBrand = document.createElement("td");
+            tdBrand.textContent = item.brand_name || item.brand_id;
+            tdBrand.style.fontWeight = "600";
+
+            const tdModels = document.createElement("td");
+            // 过滤型号：排除URL和链接
+            const filteredModels = (item.top_models || []).filter(m => {
+              const mStr = String(m || "").trim();
+              return mStr && !mStr.startsWith("http") && !mStr.includes("://") && 
+                     mStr.length < 100; // 排除过长的可能是URL的字符串
+            });
+            tdModels.textContent = filteredModels.join("，") || "—";
+            tdModels.style.color = "var(--gray-500)";
+
+            const tdPlat = document.createElement("td");
+            // 平台 ID 到显示名称的映射
+            const platformNames = {
+              "bilibili": "Bilibili",
+              "gsmarena": "GSMArena",
+              "reddit": "Reddit"
+            };
+            const platformDisplay = (item.platforms || []).map(p => platformNames[p] || p).join(" / ");
+            tdPlat.textContent = platformDisplay || "—";
+            tdPlat.style.fontSize = "12px";
+
+            const tdTotal = document.createElement("td");
+            tdTotal.className = "td-number";
+            tdTotal.textContent = item.total ?? 0;
+
+            const tdPos = document.createElement("td");
+            tdPos.className = "td-number positive";
+            tdPos.textContent = item.pos ?? 0;
+
+            const tdNeg = document.createElement("td");
+            tdNeg.className = "td-number negative";
+            tdNeg.textContent = item.neg ?? 0;
+
+            const tdNeu = document.createElement("td");
+            tdNeu.className = "td-number";
+            tdNeu.textContent = item.neu ?? 0;
+
+            const tdRate = document.createElement("td");
+            tdRate.className = "td-number";
+            tdRate.textContent = formatPercent(item.positive_rate);
+
+            tr.appendChild(tdBrand);
+            tr.appendChild(tdModels);
+            tr.appendChild(tdPlat);
+            tr.appendChild(tdTotal);
+            tr.appendChild(tdPos);
+            tr.appendChild(tdNeg);
+            tr.appendChild(tdNeu);
+            tr.appendChild(tdRate);
+
+            tr.addEventListener("click", () => {
+              document
+                .querySelectorAll("#brand-table-body tr")
+                .forEach((row) => row.classList.remove("active-row"));
+              tr.classList.add("active-row");
+
+              CURRENT_BRAND_ID = item.brand_id;
+              CURRENT_BRAND_NAME = item.brand_name || item.brand_id;
+
+              const label = document.getElementById("detail-brand-label");
+              label.textContent = CURRENT_BRAND_NAME;
+              label.style.background = "#1d4ed8";
+              label.style.color = "#ffffff";
+
+              brandSelect.value = item.brand_id;
+              reloadOpinionsForCurrentBrand();
+            });
+
+            tbody.appendChild(tr);
+
+            const opt = document.createElement("option");
+            opt.value = item.brand_id;
+            opt.textContent = item.brand_name || item.brand_id;
+            brandSelect.appendChild(opt);
+          });
+
+        document.getElementById("brand-total-badge").textContent =
+          `共 ${BRAND_INSIGHTS.length} 个品牌`;
+          
+        // 初始化表头排序状态
+        updateSortIcons();
+      }
+      
+      // 加载品牌数据
+      async function loadBrandInsights() {
+        try {
+          hideError(); // 清除之前的错误提示
+          
+          const response = await fetchJSON("/api/v1/metrics/brands");
+          
+          if (!response || !Array.isArray(response.brands)) {
+            throw new Error("返回数据格式不正确");
+          }
+          
+          BRAND_INSIGHTS = response.brands || [];
+          
+          // 如果没有数据，显示提示
+          if (BRAND_INSIGHTS.length === 0) {
+            const tbody = document.getElementById("brand-table-body");
+            tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:40px;color:var(--gray-400);">暂无数据</td></tr>';
+            document.getElementById("brand-total-badge").textContent = "共 0 个品牌";
+            return;
+          }
+          
+          // 初始化排序状态（默认按评论数降序）
+          BRAND_TABLE_SORT = {
+            field: "total",
+            direction: "desc"
+          };
+          
+          renderBrandTable();
+          initTableSort();
+        } catch (err) {
+          console.error("加载品牌数据失败:", err);
+          // 错误已在 fetchJSON 中显示，这里设置空表格
+          const tbody = document.getElementById("brand-table-body");
+          tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:40px;color:var(--gray-400);">暂无数据</td></tr>';
+          document.getElementById("brand-total-badge").textContent = "共 0 个品牌";
+        }
+      }
+      
+      // 更新表头排序图标
+      function updateSortIcons() {
+        document.querySelectorAll("#brand-table-header th.sortable").forEach(th => {
+          th.classList.remove("sort-asc", "sort-desc");
+          const sortField = th.dataset.sort;
+          if (sortField === BRAND_TABLE_SORT.field) {
+            th.classList.add(BRAND_TABLE_SORT.direction === "asc" ? "sort-asc" : "sort-desc");
+          }
+        });
+      }
+      
+      // 处理表头点击排序
+      function handleTableHeaderClick(field) {
+        if (BRAND_TABLE_SORT.field === field) {
+          // 切换排序方向
+          BRAND_TABLE_SORT.direction = BRAND_TABLE_SORT.direction === "asc" ? "desc" : "asc";
+        } else {
+          // 新的排序字段，默认降序
+          BRAND_TABLE_SORT.field = field;
+          BRAND_TABLE_SORT.direction = "desc";
+        }
+        updateSortIcons();
+        renderBrandTable();
+      }
+      
+      // 初始化表头点击事件（在loadBrandInsights之后调用）
+      function initTableSort() {
+        document.querySelectorAll("#brand-table-header th.sortable").forEach(th => {
+          th.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const sortField = th.dataset.sort;
+            if (sortField) {
+              handleTableHeaderClick(sortField);
+            }
+          });
+        });
+      }
+
+      // ========== 评论详情 /opinions ==========
+
+      function populateModelFilters() {
+        const modelSelect = document.getElementById("model-select");
+        const models = new Set();
+
+        // 方法1：从品牌洞察数据中获取该品牌的top_models（更完整）
+        if (CURRENT_BRAND_ID && BRAND_INSIGHTS) {
+          const brandInsight = BRAND_INSIGHTS.find(b => b.brand_id === CURRENT_BRAND_ID);
+          if (brandInsight && brandInsight.top_models) {
+            brandInsight.top_models.forEach(m => {
+              const modelStr = String(m || "").trim();
+              if (modelStr && !modelStr.startsWith("http") && !modelStr.includes("://") && 
+                  modelStr.length < 100 && modelStr !== "—") {
+                models.add(modelStr);
+              }
+            });
+          }
+        }
+
+        // 方法2：从当前评论数据中提取型号（作为补充）
+        CURRENT_ALL_ROWS.forEach((row) => {
+          const model = row.model;
+          if (model) {
+            const modelStr = String(model).trim();
+            // 过滤URL和无效值
+            if (modelStr && !modelStr.startsWith("http") && !modelStr.includes("://") && 
+                modelStr.length < 100 && modelStr !== "—") {
+              models.add(modelStr);
+            }
+          }
+        });
+
+        const currentModel = modelSelect.value;
+
+        modelSelect.innerHTML = '<option value="">所有型号</option>';
+        Array.from(models)
+          .sort()
+          .forEach((m) => {
+            const opt = document.createElement("option");
+            opt.value = m;
+            opt.textContent = m;
+            modelSelect.appendChild(opt);
+          });
+
+        if (currentModel && models.has(currentModel)) {
+          modelSelect.value = currentModel;
+        }
+      }
+
+      function populateYearMonthFilters() {
+        const yearSelect = document.getElementById("year-select");
+        const monthSelect = document.getElementById("month-select");
+
+        const years = new Set();
+        const months = new Set();
+
+        CURRENT_ALL_ROWS.forEach((row) => {
+          const d = row.published_at || "";
+          if (d.length >= 4) years.add(d.slice(0, 4));
+          if (d.length >= 7) months.add(d.slice(5, 7));
+        });
+
+        const currentYear = yearSelect.value;
+        const currentMonth = monthSelect.value;
+
+        yearSelect.innerHTML = '<option value="">年份</option>';
+        Array.from(years)
+          .sort()
+          .forEach((y) => {
+            const opt = document.createElement("option");
+            opt.value = y;
+            opt.textContent = y + " 年";
+            yearSelect.appendChild(opt);
+          });
+
+        monthSelect.innerHTML = '<option value="">月份</option>';
+        Array.from(months)
+          .sort()
+          .forEach((m) => {
+            const opt = document.createElement("option");
+            opt.value = m;
+            opt.textContent = parseInt(m, 10) + " 月";
+            monthSelect.appendChild(opt);
+          });
+
+        if (currentYear && years.has(currentYear)) {
+          yearSelect.value = currentYear;
+        }
+        if (currentMonth && months.has(currentMonth)) {
+          monthSelect.value = currentMonth;
+        }
+      }
+
+      function renderDetailTable() {
+        const tbody = document.getElementById("detail-table-body");
+        tbody.innerHTML = "";
+
+        if (!CURRENT_BRAND_ID) {
+          tbody.innerHTML =
+            '<tr><td colspan="6" style="text-align:center; padding:22px 4px; color:#9ca3af;">请先在上方表格中选择品牌。</td></tr>';
+          return;
+        }
+
+        // 后端已经按筛选条件返回了数据，直接使用
+        const rows = CURRENT_ALL_ROWS;
+
+        if (!rows.length) {
+          tbody.innerHTML =
+            '<tr><td colspan="6" style="text-align:center; padding:22px 4px; color:#9ca3af;">当前条件下暂无评论样本。</td></tr>';
+          return;
+        }
+
+        rows.forEach((row) => {
+          const tr = document.createElement("tr");
+
+          const tdTime = document.createElement("td");
+          tdTime.textContent = row.published_at || "—";
+          tdTime.style.fontSize = "12px";
+          tdTime.style.color = "var(--gray-400)";
+
+          const tdPlat = document.createElement("td");
+          tdPlat.textContent = row.platform || "—";
+          tdPlat.style.fontSize = "12px";
+
+          const tdBrand = document.createElement("td");
+          // 过滤品牌：确保不显示URL
+          const brandDisplay = row.brand_id || row.brand_name || "—";
+          const brandStr = String(brandDisplay).trim();
+          tdBrand.textContent = (brandStr.startsWith("http") || brandStr.includes("://")) ? "—" : brandDisplay;
+
+          const tdModel = document.createElement("td");
+          // 过滤型号：确保不显示URL
+          const modelDisplay = row.model || "—";
+          const modelStr = String(modelDisplay).trim();
+          tdModel.textContent = (modelStr.startsWith("http") || modelStr.includes("://")) ? "—" : modelDisplay;
+          tdModel.style.color = "var(--gray-500)";
+
+          const tdSent = document.createElement("td");
+          const span = document.createElement("span");
+          span.classList.add("badge-chip");
+          if (row.sentiment === "pos") {
+            span.classList.add("badge-pos");
+            span.textContent = "正向";
+          } else if (row.sentiment === "neg") {
+            span.classList.add("badge-neg");
+            span.textContent = "负向";
+          } else {
+            span.classList.add("badge-neu");
+            span.textContent = "中性";
+          }
+          tdSent.appendChild(span);
+
+          const tdText = document.createElement("td");
+          const text = String(row.raw_text || "");
+          tdText.innerHTML = escapeHTML(text).replace(/\n/g, "<br>");
+          tdText.style.lineHeight = "1.6";
+
+          tr.appendChild(tdTime);
+          tr.appendChild(tdPlat);
+          tr.appendChild(tdBrand);
+          tr.appendChild(tdModel);
+          tr.appendChild(tdSent);
+          tr.appendChild(tdText);
+
+          tbody.appendChild(tr);
+        });
+      }
+
+      async function reloadOpinionsForCurrentBrand() {
+        if (!CURRENT_BRAND_ID) {
+          CURRENT_ALL_ROWS = [];
+          // 清空型号筛选选项
+          const modelSelect = document.getElementById("model-select");
+          modelSelect.innerHTML = '<option value="">所有型号</option>';
+          renderDetailTable();
+          return;
+        }
+        
+        // 选择品牌后，立即填充型号选项（从品牌洞察数据）
+        populateModelFilters();
+
+        const model = document.getElementById("model-select").value;
+        const platform = document.getElementById("platform-select").value;
+        const year = document.getElementById("year-select").value;
+        const month = document.getElementById("month-select").value;
+        
+        let url =
+          "/opinions?brand_id=" +
+          encodeURIComponent(CURRENT_BRAND_ID) +
+          "&limit=200";
+        if (model && model !== "") {
+          url += "&model=" + encodeURIComponent(model);
+        }
+        if (platform && platform !== "") {
+          url += "&platform=" + encodeURIComponent(platform);
+        }
+        if (year) {
+          url += "&year=" + encodeURIComponent(year);
+        }
+        if (month) {
+          url += "&month=" + encodeURIComponent(month);
+        }
+
+        try {
+          const rows = await fetchJSON(url);
+          CURRENT_ALL_ROWS = rows || [];
+          populateModelFilters();
+          populateYearMonthFilters();
+          renderDetailTable();
+        } catch (err) {
+          console.error(err);
+        }
+      }
+
+      // ========== Copilot（占位，不调用模型） ==========
+
+      async function askCopilot() {
+        const textarea = document.getElementById("copilot-question");
+        const answerDiv = document.getElementById("copilot-answer");
+        let question = textarea.value.trim();
+
+        if (!question) {
+          question =
+            "请总结最近用户对主要手机品牌在发热、续航和拍照方面的评价要点。";
+        }
+
+        if (CURRENT_BRAND_ID) {
+          question = `【当前品牌：${CURRENT_BRAND_NAME || CURRENT_BRAND_ID}】` + question;
+        }
+
+        answerDiv.classList.remove("empty");
+        answerDiv.innerHTML =
+          '<span style="font-size:13px; color:#6b7280;">⏳ 正在调用 /copilot 接口（仅占位，不调用外部模型）...</span>';
+
+        try {
+          const data = await fetchJSON("/copilot", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ question }),
+          });
+          answerDiv.innerHTML = escapeHTML(data.answer || "").replace(
+            /\n/g,
+            "<br>"
+          );
+        } catch (err) {
+          console.error(err);
+          answerDiv.innerHTML =
+            '<span style="color:#ef4444;">调用 /copilot 失败，请检查后端是否启动。</span>';
+        }
+      }
+
+      // ========== CSV 导入 demo（本地解析） ==========
+
+      function handleCsvFiles(fileList) {
+        const files = Array.from(fileList || []);
+        if (!files.length) return;
+
+        let totalRows = 0;
+        let done = 0;
+
+        files.forEach((file) => {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const text = e.target.result || "";
+            const lines = text.split(/\r?\n/).filter((l) => l.trim());
+            if (lines.length > 1) {
+              totalRows += lines.length - 1; // 去掉表头
+            }
+            done++;
+            if (done === files.length) {
+              alert(
+                `已选择 ${files.length} 个 CSV，本地解析约 ${totalRows} 条记录（仅本地预览，不上传服务端）。`
+              );
+            }
+          };
+          reader.readAsText(file);
+        });
+      }
+
+      // ========== init ==========
+
+      document.addEventListener("DOMContentLoaded", () => {
+        loadStats();
+        loadBrandInsights();
+
+        document
+          .getElementById("btn-refresh-all")
+          .addEventListener("click", () => {
+            loadStats();
+            loadBrandInsights();
+            if (CURRENT_BRAND_ID) {
+              reloadOpinionsForCurrentBrand();
+            }
+          });
+
+        document
+          .getElementById("brand-select")
+          .addEventListener("change", (e) => {
+            CURRENT_BRAND_ID = e.target.value;
+            CURRENT_BRAND_NAME = "";
+
+            document
+              .querySelectorAll("#brand-table-body tr")
+              .forEach((row) => {
+                row.classList.toggle(
+                  "active-row",
+                  row.dataset.brandId === CURRENT_BRAND_ID
+                );
+              });
+
+            const label = document.getElementById("detail-brand-label");
+            if (CURRENT_BRAND_ID) {
+              const found = BRAND_INSIGHTS.find(
+                (b) => b.brand_id === CURRENT_BRAND_ID
+              );
+              CURRENT_BRAND_NAME = found?.brand_name || CURRENT_BRAND_ID;
+              label.textContent = CURRENT_BRAND_NAME;
+              label.style.background = "#1d4ed8";
+              label.style.color = "#ffffff";
+            } else {
+              label.textContent = "请选择品牌";
+              label.style.background = "#e5e7eb";
+              label.style.color = "#4b5563";
+            }
+            reloadOpinionsForCurrentBrand();
+          });
+
+        document
+          .getElementById("platform-select")
+          .addEventListener("change", () => reloadOpinionsForCurrentBrand());
+
+        document
+          .getElementById("model-select")
+          .addEventListener("change", () => reloadOpinionsForCurrentBrand());
+
+        document
+          .getElementById("year-select")
+          .addEventListener("change", () => reloadOpinionsForCurrentBrand());
+        document
+          .getElementById("month-select")
+          .addEventListener("change", () => reloadOpinionsForCurrentBrand());
+
+        document
+          .getElementById("btn-ask-copilot")
+          .addEventListener("click", () => askCopilot());
+
+        document
+          .getElementById("btn-import-csv")
+          .addEventListener("click", () =>
+            document.getElementById("csv-input").click()
+          );
+        document
+          .getElementById("csv-input")
+          .addEventListener("change", (e) => {
+            handleCsvFiles(e.target.files);
+            e.target.value = "";
+          });
+      });
+    </script>
+  </body>
+</html>

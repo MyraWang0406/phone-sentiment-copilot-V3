@@ -1,0 +1,5 @@
+tmp_browser_data_bilibili/
+tmp_browser_data/
+__pycache__/
+.venv/
+*.log
