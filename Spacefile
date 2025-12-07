@@ -1,0 +1,14 @@
+# Spacefile Docs: https://deta.space/docs/en/reference/spacefile
+v: 0
+
+app_name: "Phone Sentiment API"
+
+micros:
+  - name: phone-sentiment-api
+    src: .
+    engine: python3.9
+    primary: true
+    public_routes:
+      - "*"   # 所有路由对公网开放
+    dev: "uvicorn main:app --reload --host 0.0.0.0 --port 8000"
+

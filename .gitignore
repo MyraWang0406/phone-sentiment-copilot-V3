@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+ENV/
+
+# 临时浏览器数据
+**/tmp_browser_data*/
+**/tmp_browser_data_bilibili*/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-*
+
+# 日志和进度文件
+*.log
+*_progress.json
+reddit_comments_progress.json
+reddit_progress.json
+
+# 操作系统
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 环境变量
+.env
+.env.local
+
