@@ -48,6 +48,85 @@
           "PingFang SC", "Hiragino Sans GB", sans-serif;
         background: radial-gradient(circle at 0 0, #e0f2fe, #eef2ff 40%, #f9fafb);
         color: var(--gray-900);
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      /* 水印样式 */
+      .watermark {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+        background: repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 200px,
+          rgba(0, 0, 0, 0.03) 200px,
+          rgba(0, 0, 0, 0.03) 400px
+        ),
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 200px,
+          rgba(0, 0, 0, 0.03) 200px,
+          rgba(0, 0, 0, 0.03) 400px
+        );
+      }
+
+      .watermark-text {
+        position: absolute;
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.15);
+        white-space: nowrap;
+        transform: rotate(-45deg);
+        font-weight: 500;
+        letter-spacing: 2px;
+        user-select: none;
+      }
+
+      /* 创建重复的水印文本 */
+      .watermark-text:nth-child(1) {
+        top: 20%;
+        left: 10%;
+      }
+
+      .watermark-text:nth-child(2) {
+        top: 40%;
+        left: 30%;
+      }
+
+      .watermark-text:nth-child(3) {
+        top: 60%;
+        left: 10%;
+      }
+
+      .watermark-text:nth-child(4) {
+        top: 80%;
+        left: 30%;
+      }
+
+      .watermark-text:nth-child(5) {
+        top: 20%;
+        right: 10%;
+      }
+
+      .watermark-text:nth-child(6) {
+        top: 40%;
+        right: 30%;
+      }
+
+      .watermark-text:nth-child(7) {
+        top: 60%;
+        right: 10%;
+      }
+
+      .watermark-text:nth-child(8) {
+        top: 80%;
+        right: 30%;
       }
 
       .page-root {
