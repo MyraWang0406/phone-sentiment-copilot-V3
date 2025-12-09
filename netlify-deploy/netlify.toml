@@ -20,8 +20,8 @@
 
 # 代理 /opinions 路径（支持查询参数）
 [[redirects]]
-  from = "/opinions*"
-  to = "https://phone-sentiment-copilot.onrender.com/opinions:splat"
+  from = "/opinions"
+  to = "https://phone-sentiment-copilot.onrender.com/opinions"
   status = 200
   force = true
 
@@ -33,6 +33,7 @@
   force = true
 
 # 重定向规则（用于 SPA 单页应用）
+# 注意：Netlify 按顺序处理重定向，API 代理规则在前面，所以这个不会拦截 API 请求
 [[redirects]]
   from = "/*"
   to = "/index.html"
