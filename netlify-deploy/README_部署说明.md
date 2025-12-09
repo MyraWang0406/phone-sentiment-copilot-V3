@@ -6,19 +6,45 @@
 
 ## ⚠️ 部署前必做
 
-### 1. 修改 API 地址
+### 1. 修改 Render 后端地址
 
-打开 `index.html` 文件，找到第 1039 行左右的 `API_BASE` 配置：
+**重要**：前端已配置为通过 Netlify 代理访问 Render 后端，无需修改 `index.html`。
 
-```javascript
-const API_BASE = "https://your-backend-api.com";
+只需修改 `netlify.toml` 文件中的 Render 后端地址：
+
+打开 `netlify.toml` 文件，找到以下配置：
+
+```toml
+# 代理 /api/* 路径
+[[redirects]]
+  from = "/api/*"
+  to = "https://phone-sentiment-copilot.onrender.com/api/:splat"
+  status = 200
+  force = true
+
+# 代理 /opinions 路径
+[[redirects]]
+  from = "/opinions*"
+  to = "https://phone-sentiment-copilot.onrender.com/opinions:splat"
+  status = 200
+  force = true
+
+# 代理 /copilot 路径
+[[redirects]]
+  from = "/copilot"
+  to = "https://phone-sentiment-copilot.onrender.com/copilot"
+  status = 200
+  force = true
 ```
 
-**必须修改为你的实际后端 API 地址**，例如：
-- 如果你的后端部署在 `https://api.example.com`，则改为：`const API_BASE = "https://api.example.com";`
-- 如果后端在 `http://backend.example.com:8000`，则改为：`const API_BASE = "http://backend.example.com:8000";`
+**将 `https://phone-sentiment-copilot.onrender.com` 替换为你的实际 Render 后端地址**。
 
-⚠️ **重要**：如果后端不支持跨域（CORS），需要在后端添加 CORS 配置。
+例如，如果你的 Render 后端地址是 `https://your-api.onrender.com`，则将所有 `phone-sentiment-copilot.onrender.com` 替换为 `your-api.onrender.com`。
+
+⚠️ **注意**：
+- 本地调试时，前端会自动使用 `http://127.0.0.1:8000`
+- 线上部署时，前端使用相对路径，通过 Netlify 代理访问 Render 后端
+- 这种方式避免了 CORS 跨域问题
 
 ## 🚀 部署步骤
 

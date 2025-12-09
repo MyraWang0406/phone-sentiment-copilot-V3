@@ -1126,10 +1126,13 @@
     </div>
 
     <script>
-      // ⚠️ 部署前必改：请将下面的地址改为你的后端 API 地址
+      // API 地址配置
       // 本地调试：http://127.0.0.1:8000
-      // 线上部署：替换为 Render 后端地址，例如：https://phone-sentiment-copilot.onrender.com
-      const API_BASE = "https://phone-sentiment-copilot.onrender.com";
+      // 线上部署：使用空字符串，通过 Netlify 代理到 Render 后端
+      // Netlify 会将 /api/* 请求代理到 Render 后端（配置在 netlify.toml 中）
+      const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+        ? "http://127.0.0.1:8000" 
+        : "";
 
       let GLOBAL_STATS = null;
       let BRAND_INSIGHTS = [];
