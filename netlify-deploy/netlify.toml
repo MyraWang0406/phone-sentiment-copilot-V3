@@ -8,27 +8,27 @@
   command = "echo 'No build needed, static site'"
 
 # API 代理：将所有 API 请求代理到 Render 后端
-# ⚠️ 部署前必改：将下面的地址替换为你的实际 Render 后端地址
-# 例如：https://phone-sentiment-copilot.onrender.com
+# 根据 render.yaml 配置，后端服务名为：phone-sentiment-api
+# 如果 Render 服务名不同，请修改下面的地址
 
 # 代理 /api/* 路径
 [[redirects]]
   from = "/api/*"
-  to = "https://phone-sentiment-copilot.onrender.com/api/:splat"
+  to = "https://phone-sentiment-api.onrender.com/api/:splat"
   status = 200
   force = true
 
 # 代理 /opinions 路径（支持查询参数）
 [[redirects]]
   from = "/opinions"
-  to = "https://phone-sentiment-copilot.onrender.com/opinions"
+  to = "https://phone-sentiment-api.onrender.com/opinions"
   status = 200
   force = true
 
 # 代理 /copilot 路径
 [[redirects]]
   from = "/copilot"
-  to = "https://phone-sentiment-copilot.onrender.com/copilot"
+  to = "https://phone-sentiment-api.onrender.com/copilot"
   status = 200
   force = true
 
