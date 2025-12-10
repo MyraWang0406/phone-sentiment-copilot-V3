@@ -1,0 +1,75 @@
+{
+  "category": "device",
+  "platforms": ["Bilibili", "Reddit"],
+  "brand_count": 5,
+  "model_count": 18,
+  "raw_comment_count": 920,
+  "user_sentence_count": 6800,
+  "brands": [
+    {
+      "brand_cn": "石头科技",
+      "brand_en": "Roborock",
+      "hot_models": ["P10 Pro", "V20"],
+      "sources": ["Bilibili", "Reddit"],
+      "stats": {
+        "total_reviews": 1850,
+        "pos": 312,
+        "neg": 198,
+        "neutral": 1340,
+        "positive_rate": 0.169
+      }
+    },
+    {
+      "brand_cn": "追觅",
+      "brand_en": "Dreame",
+      "hot_models": ["X40", "S30"],
+      "sources": ["Bilibili", "Reddit"],
+      "stats": {
+        "total_reviews": 1420,
+        "pos": 245,
+        "neg": 167,
+        "neutral": 1008,
+        "positive_rate": 0.173
+      }
+    },
+    {
+      "brand_cn": "云鲸",
+      "brand_en": "Narwal",
+      "hot_models": ["J4", "J3"],
+      "sources": ["Bilibili", "Reddit"],
+      "stats": {
+        "total_reviews": 980,
+        "pos": 178,
+        "neg": 123,
+        "neutral": 679,
+        "positive_rate": 0.182
+      }
+    },
+    {
+      "brand_cn": "小米",
+      "brand_en": "Xiaomi",
+      "hot_models": ["米家 S 系列", "米家高性价比"],
+      "sources": ["Bilibili", "Reddit"],
+      "stats": {
+        "total_reviews": 1560,
+        "pos": 267,
+        "neg": 201,
+        "neutral": 1092,
+        "positive_rate": 0.171
+      }
+    },
+    {
+      "brand_cn": "添可",
+      "brand_en": "Tineco",
+      "hot_models": ["芙万系列"],
+      "sources": ["Bilibili", "Reddit"],
+      "stats": {
+        "total_reviews": 990,
+        "pos": 189,
+        "neg": 134,
+        "neutral": 667,
+        "positive_rate": 0.191
+      }
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "category": "car",
+  "platforms": ["Bilibili", "Reddit"],
+  "brand_count": 8,
+  "model_count": 35,
+  "raw_comment_count": 1850,
+  "user_sentence_count": 12450,
+  "brands": [
+    {
+      "brand_cn": "特斯拉",
+      "brand_en": "Tesla",
+      "hot_models": ["Model 3", "Model Y", "Cybertruck"],
+      "sources": ["Bilibili", "Reddit"],
+      "stats": {
+        "total_reviews": 3420,
+        "pos": 512,
+        "neg": 689,
+        "neutral": 2219,
+        "positive_rate": 0.150
+      }
+    },
+    {
+      "brand_cn": "比亚迪",
+      "brand_en": "BYD",
+      "hot_models": ["汉", "唐", "海豹", "宋"],
+      "sources": ["Bilibili", "Reddit"],
+      "stats": {
+        "total_reviews": 2890,
+        "pos": 445,
+        "neg": 398,
+        "neutral": 2047,
+        "positive_rate": 0.154
+      }
+    },
+    {
+      "brand_cn": "极氪",
+      "brand_en": "Zeekr",
+      "hot_models": ["001", "007"],
+      "sources": ["Bilibili", "Reddit"],
+      "stats": {
+        "total_reviews": 1560,
+        "pos": 289,
+        "neg": 201,
+        "neutral": 1070,
+        "positive_rate": 0.185
+      }
+    },
+    {
+      "brand_cn": "问界",
+      "brand_en": "AITO",
+      "hot_models": ["M7", "M9"],
+      "sources": ["Bilibili", "Reddit"],
+      "stats": {
+        "total_reviews": 1420,
+        "pos": 267,
+        "neg": 189,
+        "neutral": 964,
+        "positive_rate": 0.188
+      }
+    },
+    {
+      "brand_cn": "零跑",
+      "brand_en": "Leapmotor",
+      "hot_models": ["C11", "C01"],
+      "sources": ["Bilibili", "Reddit"],
+      "stats": {
+        "total_reviews": 980,
+        "pos": 156,
+        "neg": 134,
+        "neutral": 690,
+        "positive_rate": 0.159
+      }
+    },
+    {
+      "brand_cn": "宝马",
+      "brand_en": "BMW",
+      "hot_models": ["iX", "i4"],
+      "sources": ["Bilibili", "Reddit"],
+      "stats": {
+        "total_reviews": 1120,
+        "pos": 198,
+        "neg": 245,
+        "neutral": 677,
+        "positive_rate": 0.177
+      }
+    },
+    {
+      "brand_cn": "奔驰",
+      "brand_en": "Mercedes-Benz",
+      "hot_models": ["EQE", "EQS"],
+      "sources": ["Bilibili", "Reddit"],
+      "stats": {
+        "total_reviews": 890,
+        "pos": 134,
+        "neg": 178,
+        "neutral": 578,
+        "positive_rate": 0.151
+      }
+    },
+    {
+      "brand_cn": "智己",
+      "brand_en": "IM Motors",
+      "hot_models": ["L6", "LS6"],
+      "sources": ["Bilibili", "Reddit"],
+      "stats": {
+        "total_reviews": 720,
+        "pos": 123,
+        "neg": 98,
+        "neutral": 499,
+        "positive_rate": 0.171
+      }
+    }
+  ]
+}

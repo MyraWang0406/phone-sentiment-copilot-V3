@@ -1,0 +1,88 @@
+{
+  "category": "phone",
+  "platforms": ["Bilibili", "GSM Arena", "Reddit"],
+  "brand_count": 6,
+  "model_count": 26,
+  "raw_comment_count": 2199,
+  "user_sentence_count": 25202,
+  "brands": [
+    {
+      "brand_cn": "Vivo",
+      "brand_en": "Vivo",
+      "hot_models": ["vivo_x100", "iqoo_12", "iqoo_neo9"],
+      "sources": ["Bilibili", "GSM Arena", "Reddit"],
+      "stats": {
+        "total_reviews": 5174,
+        "pos": 606,
+        "neg": 524,
+        "neutral": 4044,
+        "positive_rate": 0.117
+      }
+    },
+    {
+      "brand_cn": "小米",
+      "brand_en": "Xiaomi",
+      "hot_models": ["redmi_k70", "redmi_k70e", "xiaomi_14"],
+      "sources": ["Bilibili", "GSM Arena", "Reddit"],
+      "stats": {
+        "total_reviews": 4919,
+        "pos": 495,
+        "neg": 687,
+        "neutral": 3737,
+        "positive_rate": 0.101
+      }
+    },
+    {
+      "brand_cn": "Apple",
+      "brand_en": "Apple",
+      "hot_models": ["iphone_15", "iphone_16", "iphone_15_pro"],
+      "sources": ["Bilibili", "GSM Arena", "Reddit"],
+      "stats": {
+        "total_reviews": 3655,
+        "pos": 313,
+        "neg": 428,
+        "neutral": 2914,
+        "positive_rate": 0.086
+      }
+    },
+    {
+      "brand_cn": "OPPO",
+      "brand_en": "OPPO",
+      "hot_models": ["oppo_find_x7", "oppo_k12", "oppo_reno_12"],
+      "sources": ["Bilibili", "GSM Arena"],
+      "stats": {
+        "total_reviews": 2731,
+        "pos": 268,
+        "neg": 220,
+        "neutral": 2243,
+        "positive_rate": 0.098
+      }
+    },
+    {
+      "brand_cn": "华为",
+      "brand_en": "Huawei",
+      "hot_models": ["mate_60_pro", "mate_60", "pura_70"],
+      "sources": ["Bilibili", "GSM Arena", "Reddit"],
+      "stats": {
+        "total_reviews": 2584,
+        "pos": 222,
+        "neg": 318,
+        "neutral": 2044,
+        "positive_rate": 0.086
+      }
+    },
+    {
+      "brand_cn": "Samsung",
+      "brand_en": "Samsung",
+      "hot_models": ["samsung_s24_ultra", "samsung_a55", "samsung_a35"],
+      "sources": ["Bilibili", "GSM Arena", "Reddit"],
+      "stats": {
+        "total_reviews": 2045,
+        "pos": 244,
+        "neg": 222,
+        "neutral": 1579,
+        "positive_rate": 0.119
+      }
+    }
+  ]
+}
